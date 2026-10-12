@@ -102,7 +102,8 @@ export class BoardLimitsModal extends Modal {
 		for (const board of boards) select.createEl('option', { text: board, value: board });
 		const input = (label: string, max: number): HTMLInputElement => {
 			const row = this.contentEl.createEl('label', { text: label, cls: 'kanban-draft-vault-limit' });
-			return row.createEl('input', { type: 'number', attr: { min: '1', max: String(max), 'aria-label': label } });
+			// An empty field must not reach normalizeLimit, which clamps 0 to 1 and removes records.
+			return row.createEl('input', { type: 'number', attr: { min: '1', max: String(max), step: '1', required: '', 'aria-label': label } });
 		};
 		const drafts = input('Saved drafts per board', 500);
 		const days = input('Keep drafts for days', 3650);

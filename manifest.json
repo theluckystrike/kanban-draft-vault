@@ -1,7 +1,7 @@
 {
 	"id": "kanban-draft-vault",
 	"name": "Kanban Draft Vault",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"minAppVersion": "1.13.4",
 	"description": "Keep new-card drafts and copy lost text from a recovery list.",
 	"author": "Michael Lip",

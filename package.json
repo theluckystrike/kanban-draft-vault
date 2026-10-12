@@ -1,6 +1,6 @@
 {
 	"name": "kanban-draft-vault",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"private": true,
 	"description": "Keep new-card drafts and copy lost text from a recovery list.",
 	"main": "main.js",
