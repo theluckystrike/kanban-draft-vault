@@ -58,7 +58,7 @@ Open Retention limits from recovery. Choose a captured board and set the draft c
 
 ## Install
 
-Use the release files when the publisher makes this build available. Put `main.js`, `manifest.json`, and `styles.css` in the vault configuration folder under `plugins/kanban-draft-vault`. Reload Obsidian and enable Kanban Draft Vault in Community plugins. Install and enable Kanban separately. This companion does not include Kanban.
+Search for Kanban Draft Vault in Community plugins → Browse, or install it by hand: put `main.js`, `manifest.json`, and `styles.css` in the vault configuration folder under `plugins/kanban-draft-vault`. Reload Obsidian and enable Kanban Draft Vault in Community plugins. Install and enable Kanban separately. This companion does not include Kanban.
 
 Use a small test board first. Type a sentence in its new-card form, close the form, and open recovery. Check that the saved board path and text are correct before you use the companion for longer drafts.
 
@@ -69,6 +69,8 @@ Keep the companion enabled while you write a new card. Capture happens during do
 The save status appears at the top of recovery. Saving drafts means a write is pending. Saved drafts are up to date means the queue finished without a reported error. If a write fails, keep the app open, copy needed text, and select Retry save. A forced app stop can lose text that has not reached storage.
 
 ## Settings
+
+After a minor or major update, this plugin opens one What's new tab in the background. The tab and settings card suggest other NoteMods plugins and Zovo Chat and link to notemods.com for feedback ([privacy](https://notemods.com/privacy/)). The tab sends no data. Turn the tab off in Settings.
 
 The plugin's settings tab explains local capture and contains the GitHub Sponsors controls. Free capture needs no sign in. Pro controls use the cached sponsorship result. Sign out turns Pro features off and leaves the latest saved text available. Stored board limits remain inactive in free mode.
 

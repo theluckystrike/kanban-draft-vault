@@ -7,6 +7,8 @@ import { captureDraft, dismissDraft, normalizeLimit, normalizeSettings, retain, 
 import { SaveQueue } from './persistence';
 import { RecoveryModal } from './recovery';
 import { KanbanDraftVaultSettingTab } from './settings';
+import { setupHello } from './hello/index';
+import WHATS_NEW from './whats-new.json';
 
 export default class KanbanDraftVaultPlugin extends Plugin {
 	settings: DraftSettings = { drafts: [], limits: {} };
@@ -23,6 +25,8 @@ export default class KanbanDraftVaultPlugin extends Plugin {
 	});
 
 	async onload(): Promise<void> {
+		// First: "What's new" reads its state before the settings load (packages/hello). It does not wait.
+		setupHello(this, WHATS_NEW);
 		await this.loadSettings();
 		const pro = createGitHubSponsors(this.app, this.manifest.id, SPONSORS, this);
 		pro.init();
