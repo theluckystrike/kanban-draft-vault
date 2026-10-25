@@ -1,5 +1,6 @@
 {
 	"name": "kanban-draft-vault",
+	"repository": {"type": "git", "url": "theluckystrike/kanban-draft-vault.git"},
 	"version": "1.1.0",
 	"private": true,
 	"description": "Keep new-card drafts and copy lost text from a recovery list.",
