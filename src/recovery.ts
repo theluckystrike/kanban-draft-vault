@@ -1,7 +1,7 @@
 import { Modal, Notice } from 'obsidian';
 import type KanbanDraftVaultPlugin from './main';
 import { boardLimit, findDrafts, type Draft } from './model';
-import { isPro } from './pro';
+import { isPro, LIMITS_LEAD, proNotice, proText, SEARCH_LEAD } from './pro';
 
 export async function copyOrSelect(text: string, field: HTMLTextAreaElement, write = (value: string) => navigator.clipboard.writeText(value)): Promise<boolean> {
 	try { await write(text); return true; }
@@ -27,10 +27,13 @@ export class RecoveryModal extends Modal {
 		this.retry = bar.createEl('button', { text: 'Retry save' });
 		this.retry.addEventListener('click', () => { void this.plugin.saveSettings(); });
 		this.limitButton = bar.createEl('button', { text: 'Retention limits (pro)' });
-		this.limitButton.addEventListener('click', () => { if (isPro()) new BoardLimitsModal(this.plugin).open(); });
+		this.limitButton.addEventListener('click', () => { if (isPro()) new BoardLimitsModal(this.plugin).open(); else proNotice(LIMITS_LEAD); });
 		const label = this.contentEl.createEl('label', { text: 'Search across boards (pro)' });
 		this.search = label.createEl('input', { type: 'search', placeholder: 'Board path, lane label, or latest text', attr: { 'aria-label': 'Search drafts' } });
 		this.search.addEventListener('input', () => this.renderList());
+		// A free user can select the search field. It is read-only, and a click or a typed key shows the Pro notice.
+		this.search.addEventListener('click', () => this.refuseSearch());
+		this.search.addEventListener('keydown', (event) => { if (event.key.length === 1 || event.key === 'Backspace' || event.key === 'Delete') this.refuseSearch(); });
 		this.list = this.contentEl.createDiv({ cls: 'kanban-draft-vault-list' });
 		this.off = this.plugin.onChange(() => this.refresh());
 		this.refresh();
@@ -39,13 +42,23 @@ export class RecoveryModal extends Modal {
 		const pro = isPro();
 		if (this.status) this.status.textContent = this.plugin.saves.error ? 'Save failed. Text is in memory.' : this.plugin.saves.busy ? 'Saving drafts…' : 'Saved drafts are up to date.';
 		if (this.retry) this.retry.hidden = !this.plugin.saves.error;
-		if (this.search) this.search.disabled = !pro;
-		if (this.limitButton) this.limitButton.disabled = !pro;
+		if (this.search) {
+			this.search.readOnly = !pro;
+			// Without Pro the list ignores the search, so the field shows no text.
+			if (!pro) this.search.value = '';
+		}
 		if (this.lastSettings !== this.plugin.settings || this.lastPro !== pro) {
 			this.lastSettings = this.plugin.settings;
 			this.lastPro = pro;
 			this.renderList();
 		}
+	}
+	private refusedAt = 0;
+	/** Shows the Pro notice for the search field. Keys right after a notice show no second notice. */
+	private refuseSearch(): void {
+		if (isPro() || Date.now() - this.refusedAt < 3000) return;
+		this.refusedAt = Date.now();
+		proNotice(SEARCH_LEAD);
 	}
 	private renderList(): void {
 		if (!this.list) return;
@@ -93,7 +106,7 @@ export class BoardLimitsModal extends Modal {
 	constructor(readonly plugin: KanbanDraftVaultPlugin) { super(plugin.app); }
 	onOpen(): void {
 		this.setTitle('Retention limits (pro)');
-		if (!isPro()) { this.contentEl.createEl('p', { text: 'Sign in with a GitHub account with an active sponsorship to change limits.' }); return; }
+		if (!isPro()) { this.contentEl.createEl('p', { text: proText('Changing the retention limits needs Pro.') }); return; }
 		this.contentEl.createEl('p', { text: 'Apply removes records above the draft count or age limit. Copy text you need before you reduce a limit. Limits run when you apply them and when new text is captured with pro.' });
 		const boards = [...new Set(this.plugin.settings.drafts.map((d) => d.board))].sort();
 		if (!boards.length) { this.contentEl.createEl('p', { text: 'Capture a draft on a board first.' }); return; }

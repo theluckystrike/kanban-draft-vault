@@ -44,7 +44,7 @@ Pro keeps earlier text snapshots for a draft. Expand Saved versions and select C
 
 ### Search across boards (Pro)
 
-Search the local recovery list by board path, captured lane label, or latest text. Matching ignores letter case and uses a text fragment. The search field becomes available with Pro. Search does not inspect earlier versions, read board files, or contact a search service.
+Search the local recovery list by board path, captured lane label, or latest text. Matching ignores letter case and uses a text fragment. Without Pro, the search field and Retention limits show a Sponsor on GitHub notice and change nothing. Search does not inspect earlier versions, read board files, or contact a search service.
 
 <img src="https://raw.githubusercontent.com/theluckystrike/kanban-draft-vault/HEAD/docs/search.png" alt="Local recovery search with a matching board draft" width="720">
 

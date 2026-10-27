@@ -1,5 +1,11 @@
 # kanban-draft-vault
 
+## 1.1.1
+
+### Patch Changes
+
+- 7f23db6: Retention limits and the search field of draft recovery can now be selected without Pro. They show how to get Pro, with a Sponsor on GitHub button, and change nothing.
+
 ## 1.1.0
 
 ### Minor Changes

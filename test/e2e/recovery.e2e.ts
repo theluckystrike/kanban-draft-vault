@@ -177,7 +177,8 @@ describe('Kanban 2.0.51 draft integration', function () {
 	});
 	it('gates search, versions, and retention through the Sponsors state', async function () {
 		await board(); await newCard('Call Ana'); await outside(); await saved(); await recovery();
-		expect(await browser.$('input[aria-label="Search drafts"]').isEnabled()).toBe(false);
+		// Without Pro the search field is read-only (a select shows the Pro notice, test/e2e/pro-notice.e2e.ts).
+		expect(await browser.execute(() => document.querySelector<HTMLInputElement>('input[aria-label="Search drafts"]')!.readOnly)).toBe(true);
 		expect(await browser.executeObsidian(async ({ plugins }) => plugins.kanbanDraftVault.setBoardLimit('Board A.md', { drafts: 1 }))).toBe(false);
 		await browser.keys('Escape');
 		await browser.waitUntil(async () => !(await browser.$('.kanban-draft-vault-modal').isExisting()), { timeout: 5000 });
