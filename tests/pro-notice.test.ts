@@ -8,7 +8,7 @@ import manifest from '../manifest.json';
 
 // A free user can select "Retention limits (pro)" and the search field of the recovery window. The select shows the
 // shared Pro notice with the "Sponsor on GitHub" button. No limit window opens, the search stays empty and lists all drafts.
-const PITCH = 'Sponsor on GitHub, then sign in from the plugin settings.';
+const PITCH = 'One payment turns on Pro in every NoteMods plugin. Sponsor on GitHub, then sign in from the plugin settings.';
 const LIMITS = 'Retention limits need Pro.';
 const SEARCH = 'Search across boards needs Pro.';
 

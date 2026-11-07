@@ -1,9 +1,9 @@
 {
 	"id": "kanban-draft-vault",
 	"name": "Kanban Draft Vault",
-	"version": "1.1.1",
+	"version": "1.1.2",
 	"minAppVersion": "1.13.4",
-	"description": "Keep new-card drafts and copy lost text from a recovery list.",
+	"description": "Recover lost text of new Kanban cards when a click outside or Escape closes the form. Keep each draft, open the recovery list and copy the text back. Needs Kanban.",
 	"author": "Michael Lip",
 	"authorUrl": "https://github.com/theluckystrike",
 	"fundingUrl": "https://github.com/sponsors/theluckystrike",

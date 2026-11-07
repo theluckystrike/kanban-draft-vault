@@ -1,9 +1,9 @@
 {
 	"id": "kanban-draft-vault",
 	"name": "Kanban Draft Vault",
-	"version": "1.1.1",
+	"version": "1.1.2",
 	"changes": [
-		"Retention limits and the search field of draft recovery can now be selected without Pro. They show how to get Pro, with a Sponsor on GitHub button, and change nothing."
+		"The Pro notice of Kanban Draft Vault now says that one payment turns on Pro in every NoteMods plugin."
 	],
 	"tip": "Run Open draft recovery to find text kept from a new-card form closed with Escape or a click outside.",
 	"thanks": "Hi, I am Michael, a solo developer in Poland. Kanban Draft Vault is one of over 100 small plugins that I make. Thank you for using it to keep your card drafts safe.",
