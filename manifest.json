@@ -1,7 +1,7 @@
 {
 	"id": "kanban-draft-vault",
 	"name": "Kanban Draft Vault",
-	"version": "1.1.2",
+	"version": "1.1.3",
 	"minAppVersion": "1.13.4",
 	"description": "Recover lost text of new Kanban cards when a click outside or Escape closes the form. Keep each draft, open the recovery list and copy the text back. Needs Kanban.",
 	"author": "Michael Lip",
